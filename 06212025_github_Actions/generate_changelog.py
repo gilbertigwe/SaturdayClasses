@@ -24,7 +24,9 @@ try:
 
     result = response.choices[0].message.content
 
-    with open(os.path.join(os.path.dirname(__file__), "changelog.md"), "w") as f:
+    #os.path.join(os.path.dirname(__file__),
+
+    with open("changelog.md", "w") as f:
         f.write(result)
 
     print("✅ Changelog generated.")
