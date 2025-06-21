@@ -39,17 +39,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # OPTIONAL: Also post to Slack
-      - name: Send to Slack
-        uses: slackapi/slack-github-action@v1.25.0
-        with:
-          payload: |
-            {
-              "text": "🚀 New Release Published!",
-              "attachments": [
-                {
-                  "text": "${{ github.repository }} - Changelog attached."
-                }
-              ]
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+     # - name: Send to Slack
+     #   uses: slackapi/slack-github-action@v1.25.0
+     #   with:
+     #     payload: |
+     #       {
+     #         "text": "🚀 New Release Published!",
+     #         "attachments": [
+     #           {
+     #             "text": "${{ github.repository }} - Changelog attached."
+     #           }
+     #         ]
+     #       }
+     #   env:
+     #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
