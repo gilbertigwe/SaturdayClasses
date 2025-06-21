@@ -8,5 +8,5 @@ jokes = [
     "I would tell you a UDP joke, but you might not get it."
 ]
 
-print("💡 Here's a random tech joke for you:")
+print("💡 Here's a random tech joke for you:   ")
 print(random.choice(jokes))
