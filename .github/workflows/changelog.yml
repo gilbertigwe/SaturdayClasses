@@ -38,6 +38,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+
+
+      - name: Upload changelog as artifact
+        uses: actions/upload-artifact@v3
+        with:
+            name: changelog
+            path: 06212025_github_Actions/changelog.md
+
       # OPTIONAL: Also post to Slack
      # - name: Send to Slack
      #   uses: slackapi/slack-github-action@v1.25.0
