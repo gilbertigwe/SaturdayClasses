@@ -24,9 +24,10 @@ try:
 
     result = response.choices[0].message.content
 
-    #os.path.join(os.path.dirname(__file__),
+    changelog_path = os.path.join(os.path.dirname(__file__), "changelog.md")
+    print(f"🧭 Writing to: {changelog_path}")
 
-    with open("changelog.md", "w") as f:
+    with open(changelog_path, "w") as f:
         f.write(result)
 
     print("✅ Changelog generated.")
