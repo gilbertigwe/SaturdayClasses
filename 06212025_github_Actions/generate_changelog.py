@@ -22,7 +22,7 @@ try:
     ]
 )
 
-    result = response['choices'][0]['message']['content']
+    result = response.choices[0].message.content
 
     with open(os.path.join(os.path.dirname(__file__), "changelog.md"), "w") as f:
         f.write(result)
