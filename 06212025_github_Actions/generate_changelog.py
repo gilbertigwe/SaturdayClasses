@@ -12,13 +12,15 @@ Commits:
 {commits}
 """
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 try:
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": prompt}]
-    )
+    response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[
+        {"role": "user", "content": prompt}
+    ]
+)
 
     result = response['choices'][0]['message']['content']
 
