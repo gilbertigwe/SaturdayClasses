@@ -1,0 +1,30 @@
+import os
+import openai
+
+with open(os.path.join(os.path.dirname(__file__), "commits.txt"), "r") as f:
+    commits = f.read()
+
+prompt = f"""
+You are a helpful release assistant.
+Summarize the following commit messages into a professional changelog with section titles and short bullets.
+
+Commits:
+{commits}
+"""
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+try:
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    result = response['choices'][0]['message']['content']
+
+    with open(os.path.join(os.path.dirname(__file__), "changelog.md"), "w") as f:
+        f.write(result)
+
+    print("✅ Changelog generated.")
+except Exception as e:
+    print(f"❌ Failed to generate changelog: {e}")
