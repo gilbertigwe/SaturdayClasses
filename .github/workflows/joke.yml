@@ -19,4 +19,4 @@ jobs:
           python-version: '3.10'
 
       - name: Run Joke Bot
-        run: python joke_bot.py
+        run: python jokes.py
