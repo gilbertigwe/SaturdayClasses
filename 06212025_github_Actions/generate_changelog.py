@@ -1,5 +1,5 @@
 import os
-import openai
+from openai import OpenAI
 
 with open(os.path.join(os.path.dirname(__file__), "commits.txt"), "r") as f:
     commits = f.read()
@@ -12,7 +12,7 @@ Commits:
 {commits}
 """
 
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client =client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 try:
     response = client.chat.completions.create(
