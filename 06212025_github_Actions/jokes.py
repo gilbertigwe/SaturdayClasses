@@ -9,5 +9,4 @@ jokes = [
 ]
 
 print("💡 Here's a random tech joke for you :   ")
-print(--
-    random.choice(jokes))
+print(random.choice(jokes))
