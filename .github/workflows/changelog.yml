@@ -1,0 +1,55 @@
+name: Generate Changelog
+
+on:
+  push:
+    branches:
+      - 'release/*'
+  workflow_dispatch:
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Get last 10 commit messages
+        run: git log -10 --pretty=format:"%s" > commits.txt
+
+      - name: Install OpenAI SDK
+        run: pip install openai
+
+      - name: Generate changelog with GPT
+        run: python scripts/generate_changelog.py
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          body_path: changelog.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # OPTIONAL: Also post to Slack
+      - name: Send to Slack
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "🚀 New Release Published!",
+              "attachments": [
+                {
+                  "text": "${{ github.repository }} - Changelog attached."
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
