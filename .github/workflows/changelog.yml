@@ -2,8 +2,7 @@ name: Generate Changelog
 
 on:
   push:
-    branches:
-      - 'release/*'
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
